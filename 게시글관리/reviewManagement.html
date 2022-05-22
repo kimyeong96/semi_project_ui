@@ -199,6 +199,31 @@
     td span {
       cursor: pointer;
     }
+
+    /* 리뷰 딜리트 */
+    .reviewDeleteModal {
+      position: fixed;
+      top: 50%;
+      left: 60%;
+      transform: translate(-50%, -50%);
+      border-radius: 5px;
+      height: 140px;
+      width: 320px;
+      display: none;
+      border: 1px solid black;
+      background-color: #e8ecef;
+    }
+
+
+    /* 리뷰 내용 */
+    .form-group textarea {
+      overflow-y: scroll;
+    }
+
+    /* 리뷰 내용 스크롤 없애기 */
+    .form-group textarea{ -ms-overflow-style: none; }
+    .form-group textarea::-webkit-scrollbar{ display:none; }
+
   </style>
 
 </head>
@@ -303,107 +328,91 @@
             <table class="table table-striped boardTable text-center mt-3" id="tableBox">
               <thead>
                 <tr>
-                  <th scope="col">글번호</th>
+                  <th scope="col">리뷰 번호</th>
                   <th scope="col">회원ID</th>
-                  <th scope="col">제목</th>
+                  <th scope="col">내용</th>
                   <th scope="col">날짜</th>
-                  <th scope="col">제품명</th>
-                  <th scope="col">제품 코드</th>
+                  <th scope="col">평점</th>
+                  <th scope="col">상품 코드</th>
                   <th scope="col">삭제</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>1</td>
-                  <td>kh123</td>
-                  <td>배송 관련 문의드립니다</td>
-                  <td>2022년 05년 21일 11시 08분</td>
-                  <td>남성 무지 맨투맨</td>
-                  <td>ABC-123</td>
-                  <td>
-                    <span class="text-center boardDelete"><i class="fa-solid fa-trash"></i></span>
+                  <td class="align-middle">1</td>
+                  <td class="align-middle">kh123</td>
+                  <td class="align-middle">
+                    <div class="form-group">
+                      <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="3" readonly>구매한지 3일이</textarea>
+                    </div>
+                  </td>
+                  <td class="align-middle">2022년 05년 21일 11시 08분</td>
+                  <td class="align-middle">2</td>
+                  <td class="align-middle">ABC-123</td>
+                  <td class="align-middle">
+                    <span class="text-center reviewDelete"><i class="fa-solid fa-trash"></i></span>
                   </td>
                 </tr>
                 <tr>
-                  <td>2</td>
-                  <td>kh123</td>
-                  <td>배송 관련 문의드립니다</td>
-                  <td>2022년 05년 21일 11시 08분</td>
-                  <td>남성 무지 맨투맨</td>
-                  <td>ABC-123</td>
-                  <td>
-                    <span class="text-center boardDelete"><i class="fa-solid fa-trash"></i></span>
+                  <td class="align-middle">2</td>
+                  <td class="align-middle">kh123</td>
+                  <td class="align-middle">
+                    <div class="form-group">
+                      <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="3" readonly>구매한지 3일이</textarea>
+                    </div>
+                  </td>
+                  <td class="align-middle">2022년 05년 21일 11시 08분</td>
+                  <td class="align-middle">4</td>
+                  <td class="align-middle">ABC-123</td>
+                  <td class="align-middle">
+                    <span class="text-center reviewDelete"><i class="fa-solid fa-trash"></i></span>
                   </td>
                 </tr>
                 <tr>
-                  <td>3</td>
-                  <td>kh123</td>
-                  <td>배송 관련 문의드립니다</td>
-                  <td>2022년 05년 21일 11시 08분</td>
-                  <td>남성 무지 맨투맨</td>
-                  <td>ABC-123</td>
-                  <td>
-                    <span class="text-center boardDelete"><i class="fa-solid fa-trash"></i></span>
+                  <td class="align-middle">3</td>
+                  <td class="align-middle">kh123</td>
+                  <td class="align-middle">
+                    <div class="form-group">
+                      <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="3" readonly>구매한지 3일이</textarea>
+                    </div>
+                  </td>
+                  <td class="align-middle">2022년 05년 21일 11시 08분</td>
+                  <td class="align-middle">5</td>
+                  <td class="align-middle">ABC-123</td>
+                  <td class="align-middle">
+                    <span class="text-center reviewDelete"><i class="fa-solid fa-trash"></i></span>
                   </td>
                 </tr>
                 <tr>
-                  <td>4</td>
-                  <td>kh123</td>
-                  <td>배송 관련 문의드립니다</td>
-                  <td>2022년 05년 21일 11시 08분</td>
-                  <td>남성 무지 맨투맨</td>
-                  <td>ABC-123</td>
-                  <td>
-                    <span class="text-center boardDelete"><i class="fa-solid fa-trash"></i></span>
+                  <td class="align-middle">4</td>
+                  <td class="align-middle">kh123</td>
+                  <td class="align-middle">
+                    <div class="form-group">
+                      <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="3" readonly>구매한지 3일이</textarea>
+                    </div>
                   </td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>kh123</td>
-                  <td>배송 관련 문의드립니다</td>
-                  <td>2022년 05년 21일 11시 08분</td>
-                  <td>남성 무지 맨투맨</td>
-                  <td>ABC-123</td>
-                  <td>
-                    <span class="text-center boardDelete"><i class="fa-solid fa-trash"></i></span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>kh123</td>
-                  <td>배송 관련 문의드립니다</td>
-                  <td>2022년 05년 21일 11시 08분</td>
-                  <td>남성 무지 맨투맨</td>
-                  <td>ABC-123</td>
-                  <td>
-                    <span class="text-center boardDelete"><i class="fa-solid fa-trash"></i></span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>kh123</td>
-                  <td>배송 관련 문의드립니다</td>
-                  <td>2022년 05년 21일 11시 08분</td>
-                  <td>남성 무지 맨투맨</td>
-                  <td>ABC-123</td>
-                  <td>
-                    <span class="text-center boardDelete"><i class="fa-solid fa-trash"></i></span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>kh123</td>
-                  <td>배송 관련 문의드립니다</td>
-                  <td>2022년 05년 21일 11시 08분</td>
-                  <td>남성 무지 맨투맨</td>
-                  <td>ABC-123</td>
-                  <td>
-                    <span class="text-center boardDelete"><i class="fa-solid fa-trash"></i></span>
+                  <td class="align-middle">2022년 05년 21일 11시 08분</td>
+                  <td class="align-middle">5</td>
+                  <td class="align-middle">ABC-123</td>
+                  <td class="align-middle">
+                    <span class="text-center reviewDelete"><i class="fa-solid fa-trash"></i></span>
                   </td>
                 </tr>
 
               </tbody>
             </table>
+
+        <!-- 삭제 모달  -->
+        <div class="reviewDeleteModal">
+          <div class="text-center mt-4">
+            해당 리뷰를 정말로 삭제 하시겠습니까?
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-6 d-flex justify-content-end"><button type="button" class="btn btn-primary btn-sm" id="reviewDeleteCancelBtn">취소</button></div>
+            <div class="col-md-6"><button type="button" class="btn btn-danger btn-sm" id="reviewDeleteBtn">삭제</button></div>
+          </div>
+        </div>
+
           </div>
         </div>
       </div>
@@ -450,6 +459,16 @@
           location.href = "";
         }
       });
+    })
+
+
+    // 삭제 클릭시
+    $(".reviewDelete").off().on("click",function() {
+      $(".reviewDeleteModal").fadeIn();
+
+      $("#reviewDeleteCancelBtn").off().on("click",function() {
+        $(".reviewDeleteModal").fadeOut();
+      })
     })
   </script>
 </body>
