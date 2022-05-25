@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배송 정보 변경</title>
+  <script src="https://kit.fontawesome.com/f9358a6ceb.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* navbar & maincontainer */
+    .adminContainer {
+      height: 100vh;
+      background-color: black;
+    }
+    .adminNavbar {
+      margin: 0;
+      background-color: #212e41;
+      color: #fff;
+      height: 8%;
+    }
+
+    .adminNavbar-left {
+      font-size: 26px;
+    }
+
+    .adminNavbar-left span {
+      cursor: pointer;
+    }
+
+    .adminMain {
+      background-color: blue;
+    }
+
+    .adminContent {
+      margin: 0;
+      height: 92%;
+    }
+
+    .adminSidebarContainer {
+      background-color: #212e41;
+      color: #fff;
+    }
+
+
+    ul {
+      list-style: none;
+    }
+
+    .adminIcon {
+      margin-right: 30px;
+    }
+
+    .adminIconSpan {
+      margin-right: 12px;
+    }
+
+    .adminIconLogout {
+      margin-left: 26px;
+      cursor: pointer;
+    }
+
+    /* sidebar navlink */
+
+    .adminSidebar {
+      height: 92%;
+      background: #fff;
+      transition: all 0.5s ease;
+    }
+
+    .adminSidebar .nav-links li a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .adminSidebarContainer {
+      padding: 0;
+    }
+
+    .adminMainContainer {
+      padding: 0;
+    }
+
+    .nav-linksContainer {
+      margin-top: 25px;
+      transition: 0.5s ease;
+    }
+
+    .nav-linksContainer:hover {
+      background-color: #1d1b31;
+    }
+
+    .nav-links {
+      font-size: 16px;
+      padding-left: 0;
+    }
+
+    .icon-link {
+
+      color: #fff;
+    }
+
+    .icon-link .icon-link-left {
+      color: #fff;
+    }
+
+    .icon-link .icon-link-left i {
+      left: 0;
+      color: #fff;
+    }
+
+    .icon-link .icon-link-left span {
+      color: #fff;
+    }
+
+    .sub-menu {
+      margin-left: 15%;
+      list-style: none;
+      display: none;
+      text-decoration-line: none;
+    }
+
+    .sub-menu li {
+      margin: 10px 0px;
+
+    }
+
+    .sub-menu li a {
+      font-size: 14px;
+      color: #fff;
+      text-decoration-line: none;
+    }
+
+    .sub-menu li:hover {
+      border-left: 3px solid #fff;
+    }
+
+    .firstTable {
+      background-color: #fff;
+      margin-bottom: 0;
+    }
+
+
+
+    /* 메인 페이지  */
+    .firstTableTitle {
+      font-size: 24px;
+    }
+
+    .shipmentModifyTable {
+      border: 0;
+    }
+    .MemberText ,.searchMemberText{
+      font-size: 18px;
+      margin-left: 9px;
+      margin-bottom: 0;
+      border: 40px;
+    }
+
+    .searchMemberInput {
+      margin-left: 9px;
+    }
+
+    .MemberContainer {
+      height: 340px;
+      overflow: auto;
+    }
+
+    tbody tr{
+      transition: 0.7s ease;
+    }
+
+    /* table hover시 color 변경 */
+    #tableBox:hover tbody tr:hover td {
+      background-color: #7f7f7f;
+      color:#fff;
+    }
+
+    /* 이모티콘 cursor pointer */
+    td span {
+      cursor: pointer;
+    }
+
+  </style>
+
+</head>
+
+<body>
+  <div class="adminContainer">
+    <div class="row adminNavbar d-flex align-items-center">
+      <div class="col-md-2 adminNavbar-left d-flex justify-content-center align-items-lg-center">
+        <i class="fa-brands fa-yahoo"></i>
+        <span adminNavbar-left-text>LAND</span>
+      </div>
+      <div class="col-md-10 adminNavbar-right d-flex justify-content-end">
+        <div class="adminIcon">
+          <span class="adminIconSpan">Admin</span>
+          <i class="fa-solid fa-user-check"></i>
+          <span class="adminIconLogout">로그아웃</span>
+        </div>
+      </div>
+    </div>
+    <div class="row adminSidebar adminContent d-flex">
+      <div class="col-md-2 adminSidebarContainer">
+        <div class="nav-linksContainer nav-linksContainer1">
+              <div class="icon-link row d-flex align-items-center">
+                <div class="icon-link-left col-md-3 d-flex justify-content-end">
+                  <i class="fa-solid fa-cart-shopping cart"></i>
+                </div>
+                <div class="icon-link-center col-md-6">
+                  <span class="link_name cartManagement">상품 관리</span>
+                </div>
+                <div class="icon-link-right col-md-3">
+                  <i class="fa-solid fa-caret-down arrow arrow1"></i>
+                </div>
+              </div>
+              <ul class="sub-menu sub-menu-first">
+                <li><a href="https://www.naver.com">상품 등록</a></li>
+                <li><a href="#">상품 수정</a></li>
+              </ul>
+        </div>
+        <div class="nav-linksContainer nav-linksContainer2">
+              <div class="icon-link row d-flex align-items-center">
+                <div class="icon-link-left col-md-3 d-flex justify-content-end">
+                  <i class="fa-solid fa-user-group"></i>
+                </div>
+                <div class="icon-link-center col-md-6">
+                  <span class="link_name cartManagement">회원 관리</span>
+                </div>
+                <div class="icon-link-right col-md-3">
+                  <i class="fa-solid fa-caret-down arrow arrow2"></i>
+                </div>
+              </div>
+              <ul class="sub-menu sub-menu-second">
+                <li><a href="https://www.naver.com">회원 수정 및 삭제</a></li>
+              </ul>
+        </div>
+        <div class="nav-linksContainer nav-linksContainer3">
+          <div class="icon-link row d-flex align-items-center">
+            <div class="icon-link-left col-md-3 d-flex justify-content-end">
+              <i class="fa-solid fa-truck"></i>
+            </div>
+            <div class="icon-link-center col-md-6">
+              <span class="link_name cartManagement">배송 관리</span>
+            </div>
+            <div class="icon-link-right col-md-3">
+              <i class="fa-solid fa-caret-down arrow arrow3"></i>
+            </div>
+          </div>
+          <ul class="sub-menu sub-menu-third">
+            <li><a href="https://www.naver.com">배송 정보 변경</a></li>
+          </ul>
+        </div>
+        <div class="nav-linksContainer nav-linksContainer4">
+          <div class="icon-link row d-flex align-items-center">
+            <div class="icon-link-left col-md-3 d-flex justify-content-end">
+              <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+            <div class="icon-link-center col-md-6">
+              <span class="link_name cartManagement">게시판 관리</span>
+            </div>
+            <div class="icon-link-right col-md-3">
+              <i class="fa-solid fa-caret-down arrow arrow4"></i>
+            </div>
+          </div>
+          <ul class="sub-menu sub-menu-fourth">
+            <li><a href="#">문의 관리</a></li>
+            <li><a href="#">리뷰 관리</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-10 adminMainContainer">
+        <div class="table shipmentModifyTable">
+          <div class="modifyContainer container w-100">
+            <h3 class="mt-2 text-center">배송 정보 수정</h3>
+            <form accept="" method="post" id="modifyForm">
+              <div class="row mt-1">
+                <div class="form-group col-md-6 mt-2">
+                  <label for="inputEmail4">주문 번호</label>
+                  <input type="text" class="form-control mt-2" id="inputEmail4" value="201583215SASD" readonly>
+                </div>
+                <div class="form-group col-md-6 mt-2">
+                  <label for="inputPassword4">회원 id</label>
+                  <input type="text" class="form-control mt-2" id="inputPassword4" value="kh123" readonly>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6 mt-2">
+                  <label for="inputEmail4">수취인 이름</label>
+                  <input type="email" class="form-control mt-2" id="inputEmail4" value="김준호">
+                </div>
+                <div class="form-group col-md-6 mt-2">
+                  <label for="inputEmail4">수취인 번호</label>
+                  <div class="row mt-2">
+                    <div class="col">
+                      <!-- <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="도로명주소"> -->
+                      <select class="form-select" aria-label="Default select example">
+                          <option selected>010</option>
+                          <option value="1">012</option>
+                          <option value="2">011</option>
+                          <option value="3">016</option>
+                        </select>
+                  </div>
+                  <div class="col">
+                      <input type="text" class="form-control" id="phoneNumber1" name="phoneNumber1" placeholder="전화번호" maxlength="4">
+                  </div>
+                  <div class="col">
+                      <input type="text" class="form-control" id="phoneNumber2" name="phoneNumber2" placeholder="전화번호" maxlength="4">
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6 mt-2">
+                  <label for="inputEmail4">주문일</label>
+                  <input type="text" class="form-control mt-2" id="inputEmail4" value="2022년 05월 23시 1시 45분 45초" readonly>
+                </div>
+                <div class="form-group col-md-6 mt-2">
+                  <label for="inputPassword4">주문금액</label>
+                  <input type="text" class="form-control mt-2" id="inputPassword4" value="150000원" readonly>
+                </div>
+              </div>
+              <div class="row mt-2">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="postCode" name="postCode" placeholder="우편번호">
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn btn-outline-success w-100" id="btnPostCode">우편번호 찾기</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="roadAddr" name="roadAddr" placeholder="도로명주소">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="jibunAddr" name="jibunAddr" placeholder="지번주소">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="detailAddr" name="detailAddr" placeholder="상세주소">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" id="extraAddr" name="extraAddr" placeholder="읍/면/동">
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label>배송 상태</label>
+                    <select class="form-select mt-2" aria-label="Default select example">
+                      <option selected>입금 확인</option>
+                      <option value="상품 준비중">상품 준비중</option>
+                      <option value="상품 출발">상품 출발</option>
+                      <option value="상품 도착">상품 도착</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label></label>
+                    <div class="row mt-2">
+                    <div class="col d-flex justify-content-end">
+                    <button type="button" class="btn btn-warning submitBtn ">뒤로 가기</button>
+                    </div>
+                    <div class="col">
+                      <button type="submit" class="btn btn-primary submitBtn">수정 완료</button>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+                </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(".arrow1").on("click", function () {
+      $(".sub-menu-first").toggle("4000ms");
+    })
+
+    $(".arrow2").on("click", function () {
+      $(".sub-menu-second").toggle("4000ms");
+    })
+
+    $(".arrow3").on("click", function () {
+      $(".sub-menu-third").toggle("4000ms");
+    })
+
+    $(".arrow4").on("click", function () {
+      $(".sub-menu-fourth").toggle("4000ms");
+    })
+
+
+    // 우편번호 api 주소 이용
+    let btnPostCode = document.getElementById("btnPostCode");
+        let detailAddr = document.getElementById("detailAddr");
+        btnPostCode.onclick = executePostcode;
+
+        function executePostcode() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                    // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                    var roadAddr = data.roadAddress; // 도로명 주소 변수
+                    var extraRoadAddr = ''; // 참고 항목 변수
+
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                        extraRoadAddr += data.bname;
+                    }
+                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                    if (data.buildingName !== '' && data.apartment === 'Y') {
+                        extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if (extraRoadAddr !== '') {
+                        extraRoadAddr = ' (' + extraRoadAddr + ')';
+                    }
+
+                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                    document.getElementById('postCode').value = data.zonecode;
+                    document.getElementById("roadAddr").value = roadAddr;
+                    document.getElementById("jibunAddr").value = data.jibunAddress;
+
+                    // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                    if (roadAddr !== '') {
+                        document.getElementById("extraAddr").value = extraRoadAddr;
+                    } else {
+                        document.getElementById("extraAddr").value = '';
+                    }
+                }
+            }).open();
+            detailAddr.focus();
+        }
+
+
+        let submitBtn = document.getElementById("submitBtn");
+        let email = document.getElementById("email");
+        let phoneNumber1 = document.getElementById("phoneNumber1");
+        let phoneNumber2 = document.getElementById("phoneNumber2");
+        let postCode = document.getElementById("postCode");
+        let roadAddr = document.getElementById("roadAddr");
+
+        // submitBtn.addEventListener("click", function () {
+
+        //     let regexId = /^[a-zA-Z0-9]{6,12}$/;
+        //     let regexPw = /^[a-zA-Z0-9!@$?]{6,20}$/
+        //     let regexEmail = /^[a-zA-Z][\w]+@[a-zA-Z]+\.(com|or\.kr|net|co\.kr)/;
+        //     let regexPhoneNumber = /^[0-9]{4}$/;
+
+        //     // input 창이 빈값일 때
+        //    if (phoneNumber1.value == "") {
+        //         alert("전화번호를 입력하세요");
+        //     } else if (phoneNumber2.value == "") {
+        //         alert("전화번호를 입력하세요");
+        //     }
+
+
+        //     if (!regexPhoneNumber.test(phoneNumber1.value)) {
+        //         alert("옳바른 전화번호 형식으로 입력하세요")
+        //         return;
+        //     } else if (!regexPhoneNumber.test(phoneNumber2.value)) {
+        //         alert("옳바른 전화번호 형식으로 입력하세요")
+        //         return;
+        //     }
+
+
+       // })
+
+
+
+  </script>
+</body>
+
+</html>

@@ -156,6 +156,16 @@
       margin-bottom: 0;
     }
 
+    .cardContainer {
+      margin: 0;
+    }
+    .cardContainer, .cardContentBox{
+      padding: 0;
+      }
+
+
+
+
     /* 차트  */
     .charts {
       height: 46%;
@@ -257,6 +267,47 @@
       font-size: 24px;
     }
 
+    .dataContainer {
+      border-radius: 5px;
+      color:#fff;
+      transition: ease 1.3s ;
+    }
+
+    .dataContainer:hover {
+      transform: scale(1.2);
+    }
+
+    .dataContainer1 {
+      background-color:#7da0fa ;
+    }
+
+    .dataContainer2 {
+      background-color:#4747a1 ;
+    }
+
+    .dataContainer3 {
+      background-color:#7878e8 ;
+    }
+
+    .dataContainer4 {
+      background-color:#f4797e;
+    }
+
+    .dataBox-Text {
+      width: 100px;
+    }
+
+    .dataBox-Text:nth-child(2) {
+      color: #fff;
+    }
+
+    .dataBox-Icon i {
+      font-size: 36px;
+    }
+
+    .dataBox-Text-Count {
+      font-size: 20px;
+    }
   </style>
 
 </head>
@@ -347,27 +398,104 @@
         </div>
       </div>
       <div class="col-md-10 adminMainContainer">
-        <div class="charts circleCharts">
-          <script src="https://code.highcharts.com/highcharts.js"></script>
-          <script src="https://code.highcharts.com/highcharts-more.js"></script>
-          <script src="https://code.highcharts.com/modules/exporting.js"></script>
-          <script src="https://code.highcharts.com/modules/export-data.js"></script>
-          <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-          <figure class="highcharts-figure">
-            <div id="container1"></div>
-          </figure>
+        <div class="row cardContainer">
+          <div class="col cardContentBox">
+
+            <!-- 회원수 -->
+            <div class="row h-50 m-0">
+              <div class="col-6">
+                <div class="container dataContainer dataContainer1 mt-3">
+                <div class="row">
+                  <div class="col dataBox-Text">
+                    <p class="mt-2">회원수</p>
+                    <p class="dataBox-Text-Count">460명</p>
+                    <p>22년05월24일</p>
+                  </div>
+                  <div class="col-5 dataBox-Icon d-flex justify-content-center align-items-center">
+                    <i class="fa-solid fa-users"></i>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+              <!-- 매출  -->
+              <div class="col-6">
+                <div class="container dataContainer dataContainer2 mt-3">
+                  <div class="row">
+                    <div class="col dataBox-Text">
+                      <p class="mt-2">매출</p>
+                      <p class="dataBox-Text-Count">1,111,115원</p>
+                      <p>22년05월24일</p>
+                    </div>
+                    <div class="col-5 dataBox-Icon d-flex justify-content-center align-items-center">
+                      <i class="fa-solid fa-coins"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 구매 건수  -->
+            <div class="row h-50 m-0">
+              <div class="col-6">
+                <div class="container dataContainer dataContainer3 mt-3">
+                  <div class="row">
+                    <div class="col dataBox-Text">
+                      <p class="mt-2">구매 건수</p>
+                      <p class="dataBox-Text-Count">120개</p>
+                      <p>22년05월24일</p>
+                    </div>
+                    <div class="col-5 dataBox-Icon d-flex justify-content-center align-items-center">
+                      <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- 상품 게시글 수  -->
+              <div class="col-6">
+                <div class="container dataContainer dataContainer4 mt-3">
+                  <div class="row">
+                    <div class="col dataBox-Text">
+                      <p class="mt-2">상품 게시글 수</p>
+                      <p class="dataBox-Text-Count">18개</p>
+                      <p>22년05월24일</p>
+                    </div>
+                    <div class="col-5 dataBox-Icon d-flex justify-content-center align-items-center">
+                      <i class="fa-solid fa-clipboard-list"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
+
+          <!-- 원형 차트 -->
+          <div class="col">
+            <div class="charts circleCharts">
+              <script src="https://code.highcharts.com/highcharts.js"></script>
+              <script src="https://code.highcharts.com/highcharts-more.js"></script>
+              <script src="https://code.highcharts.com/modules/exporting.js"></script>
+              <script src="https://code.highcharts.com/modules/export-data.js"></script>
+              <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+              <figure class="highcharts-figure">
+                <div id="container1"></div>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <!-- 막대 차트  -->
         <div class="charts stickCharts">
           <script src="https://code.highcharts.com/highcharts.js"></script>
           <script src="https://code.highcharts.com/modules/exporting.js"></script>
           <script src="https://code.highcharts.com/modules/export-data.js"></script>
           <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
           <figure class="highcharts-figure">
             <div id="container2"></div>
           </figure>
         </div>
-
       </div>
     </div>
   </div>
@@ -456,51 +584,17 @@
     });
 
 
-    Highcharts.chart('container2', {
-      chart: {
-        type: 'bar'
-
-      },
-      title: {
-        text: 'Stacked bar chart'
-      },
-      xAxis: {
-        categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
-      },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Total fruit consumption'
-        }
-      },
-      legend: {
-        reversed: true
-      },
-      plotOptions: {
-        series: {
-          stacking: 'normal'
-        }
-      },
-      series: [{
-        name: 'John',
-        data: [5, 3, 4, 7, 2]
-      }, {
-        name: 'Jane',
-        data: [2, 2, 3, 2, 1]
-      }, {
-        name: 'Joe',
-        data: [3, 4, 4, 2, 5]
-      },]
-
-    });
-
     // stickCharts
     Highcharts.chart('container2', {
       chart: {
         type: 'bar'
       },
+      credits: {
+        enabled: false
+      },
+
       title: {
-        text: 'Stacked bar chart'
+        text: '연령별 선호도 그래프'
       },
       xAxis: {
         categories: ['맨투맨', '후드티', '와이드팬츠', '볼캡', '모자']

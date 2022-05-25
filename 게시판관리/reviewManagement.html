@@ -196,11 +196,11 @@
     }
 
     /* 이모티콘 cursor pointer */
-    td span {
+    td span, .reviewDetailModalExitIcon {
       cursor: pointer;
     }
 
-    /* 리뷰 딜리트 */
+    /* 리뷰 딜리트 모달 */
     .reviewDeleteModal {
       position: fixed;
       top: 50%;
@@ -223,6 +223,26 @@
     /* 리뷰 내용 스크롤 없애기 */
     .form-group textarea{ -ms-overflow-style: none; }
     .form-group textarea::-webkit-scrollbar{ display:none; }
+    .reviewDetailModal {
+      position: fixed;
+      top: 50%;
+      left: 60%;
+      transform: translate(-50%, -50%);
+      border-radius: 5px;
+      width: 460px;
+      height: 280px;
+      background-color: #fff;
+      border: 2px solid black;
+      display: none;
+    }
+
+    .reviewDetailModalContainer {
+      height: 200px;
+    }
+
+    .reviewDetailModalTitle {
+      width: 100%;
+    }
 
   </style>
 
@@ -330,10 +350,12 @@
                 <tr>
                   <th scope="col">리뷰 번호</th>
                   <th scope="col">회원ID</th>
+                  <th scope="col">이미지</th>
                   <th scope="col">내용</th>
                   <th scope="col">날짜</th>
                   <th scope="col">평점</th>
                   <th scope="col">상품 코드</th>
+                  <th scope="col">상세 내용 보기</th>
                   <th scope="col">삭제</th>
                 </tr>
               </thead>
@@ -342,58 +364,103 @@
                   <td class="align-middle">1</td>
                   <td class="align-middle">kh123</td>
                   <td class="align-middle">
+                    <div>이미지</div>
+                  </td>
+                  <td class="align-middle">
                     <div class="form-group">
-                      <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="3" readonly>구매한지 3일이</textarea>
+                      <input class="replyContent form-control" readonly value="정말 좋네요!">
                     </div>
                   </td>
                   <td class="align-middle">2022년 05년 21일 11시 08분</td>
                   <td class="align-middle">2</td>
                   <td class="align-middle">ABC-123</td>
                   <td class="align-middle">
+                    <span class="text-center reviewDetailIcon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                  </td>
+                  <td class="align-middle">
                     <span class="text-center reviewDelete"><i class="fa-solid fa-trash"></i></span>
                   </td>
                 </tr>
                 <tr>
+                  <td class="align-middle">1</td>
+                  <td class="align-middle">kh123</td>
+                  <td class="align-middle">
+                    <div>이미지</div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="form-group">
+                      <input class="replyContent form-control" readonly value="정말 좋네요!">
+                    </div>
+                  </td>
+                  <td class="align-middle">2022년 05년 21일 11시 08분</td>
                   <td class="align-middle">2</td>
-                  <td class="align-middle">kh123</td>
-                  <td class="align-middle">
-                    <div class="form-group">
-                      <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="3" readonly>구매한지 3일이</textarea>
-                    </div>
-                  </td>
-                  <td class="align-middle">2022년 05년 21일 11시 08분</td>
-                  <td class="align-middle">4</td>
                   <td class="align-middle">ABC-123</td>
+                  <td class="align-middle">
+                    <span class="text-center reviewDetailIcon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                  </td>
                   <td class="align-middle">
                     <span class="text-center reviewDelete"><i class="fa-solid fa-trash"></i></span>
                   </td>
                 </tr>
                 <tr>
-                  <td class="align-middle">3</td>
+                  <td class="align-middle">1</td>
                   <td class="align-middle">kh123</td>
                   <td class="align-middle">
+                    <div>이미지</div>
+                  </td>
+                  <td class="align-middle">
                     <div class="form-group">
-                      <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="3" readonly>구매한지 3일이</textarea>
+                      <input class="replyContent form-control" readonly value="정말 좋네요!">
                     </div>
                   </td>
                   <td class="align-middle">2022년 05년 21일 11시 08분</td>
-                  <td class="align-middle">5</td>
+                  <td class="align-middle">2</td>
                   <td class="align-middle">ABC-123</td>
+                  <td class="align-middle">
+                    <span class="text-center reviewDetailIcon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                  </td>
                   <td class="align-middle">
                     <span class="text-center reviewDelete"><i class="fa-solid fa-trash"></i></span>
                   </td>
                 </tr>
                 <tr>
-                  <td class="align-middle">4</td>
+                  <td class="align-middle">1</td>
                   <td class="align-middle">kh123</td>
                   <td class="align-middle">
+                    <div>이미지</div>
+                  </td>
+                  <td class="align-middle">
                     <div class="form-group">
-                      <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="3" readonly>구매한지 3일이</textarea>
+                      <input class="replyContent form-control" readonly value="정말 좋네요!">
                     </div>
                   </td>
                   <td class="align-middle">2022년 05년 21일 11시 08분</td>
-                  <td class="align-middle">5</td>
+                  <td class="align-middle">2</td>
                   <td class="align-middle">ABC-123</td>
+                  <td class="align-middle">
+                    <span class="text-center reviewDetailIcon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                  </td>
+                  <td class="align-middle">
+                    <span class="text-center reviewDelete"><i class="fa-solid fa-trash"></i></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="align-middle">1</td>
+                  <td class="align-middle">kh123</td>
+                  <td class="align-middle">
+                    <div>이미지</div>
+                  </td>
+                  <td class="align-middle">
+                    <div class="form-group">
+                      <input class="replyContent form-control" readonly value="정말 좋네요!">
+                    </div>
+                  </td>
+                  <td class="align-middle">2022년 05년 21일 11시 08분</td>
+                  <td class="align-middle">2</td>
+                  <td class="align-middle">ABC-123</td>
+                  <td class="align-middle">
+                    <span class="text-center reviewDetailIcon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                  </td>
                   <td class="align-middle">
                     <span class="text-center reviewDelete"><i class="fa-solid fa-trash"></i></span>
                   </td>
@@ -401,6 +468,45 @@
 
               </tbody>
             </table>
+
+            <!-- 페이지네이션 -->
+            <div class="pageNationContainer d-flex justify-content-center mt-2">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+                  <li class="page-item"><a class="page-link" href="#">5</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+              </nav>
+              </div>
+            </div>
+          </div>
+
+        <!-- 내용 상세보기 -->
+        <div class="reviewcontainerModal">
+          <div class="reviewDetailModal">
+            <div class="row mt-1">
+              <div class="col d-flex justify-content-end me-3 mt-2">
+                <i class="fa-solid fa-xmark reviewDetailModalExitIcon"></i>
+              </div>
+            </div>
+            <div class="row reviewDetailModalTitle">
+              <div class="col mt-2">
+                <h4 class="ms-2">내용</h4>
+              </div>
+            </div>
+            <div class="row mt-1">
+              <div class="col d-flex justify-content-center reviewDetailModalContainer ">
+                  <textarea class="form-control w-100 reviewTextBox"  id="floatingTextarea" >정말좋네요</textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         <!-- 삭제 모달  -->
         <div class="reviewDeleteModal">
@@ -436,15 +542,6 @@
     $(".arrow4").on("click", function () {
       $(".sub-menu-fourth").toggle("4000ms");
     })
-
-    $(".memberDelete").on("click", function (e) {
-      alert("member");
-    })
-
-    $(".category-Payment").on("click", function () {
-      alert("안녕");
-    })
-
     // select에서 선택된 해당 value를 이용해 페이지 이동
     $(document).ready(function () {
       $("#category-Selector").change(function () {
@@ -460,6 +557,16 @@
         }
       });
     })
+
+    // 상세 내용 보기 클릭시
+    $(".reviewDetailIcon").off().on("click",function() {
+      $(".reviewDetailModal").fadeIn();
+
+      $(".reviewDetailModalExitIcon").off().on("click",function() {
+        $(".reviewDetailModal").fadeOut();
+      })
+    })
+
 
 
     // 삭제 클릭시
